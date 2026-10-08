@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(where python *)",
+      "Bash(where pip *)",
+      "Bash(where psql *)",
+      "Bash(where docker *)",
+      "Bash(sc query *)",
+      "Bash(Get-Service)",
+      "Bash(findstr -i postgres)"
+    ]
+  }
+}

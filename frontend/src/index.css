@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+/* Brutalist / editorial light theme: cream base, ink text and borders, red /
+   blue / yellow accents. Replaces the old dark "conductor" theme entirely --
+   this design is light-only, no dark-mode tokens. */
+@theme {
+  --color-cream: #f3eee2;
+  --color-cream-light: #fbf9f4;
+  --color-cream-dark: #eae2ce;
+  --color-ink: #161410;
+  --color-ink-light: #2b2721;
+  --color-red: #b02a1c;
+  --color-red-dark: #8f2115;
+  --color-blue: #254edb;
+  --color-blue-dark: #1b39a8;
+  --color-yellow: #f5b700;
+  --color-yellow-dark: #e0a600;
+
+  --font-display: "Archivo Black", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(37, 78, 219, 0.25);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-blue);
+  outline-offset: 3px;
+}
+
+/* Signature hard offset block shadow -- no blur, used on cards and elevated
+   panels instead of a soft/blurred box-shadow. */
+.shadow-hard {
+  box-shadow: 6px 6px 0 0 var(--color-ink);
+}
+.shadow-hard-lg {
+  box-shadow: 8px 8px 0 0 var(--color-ink);
+}
+
+/* Shared hover-shift interaction: element lifts up-left and its hard shadow
+   grows on hover, flattens on press. Used by buttons and other clickable
+   brutalist blocks (e.g. the landing role cards). */
+.button-brutal {
+  box-shadow: 4px 4px 0 0 var(--color-ink);
+  transition:
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.button-brutal:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 0 var(--color-ink);
+}
+.button-brutal:active {
+  transform: translate(0, 0);
+  box-shadow: 0 0 0 0 var(--color-ink);
+}
+
+/* Subtle graph-paper texture, for hero/landing-type sections only -- not
+   meant to appear behind dense forms/dashboards. */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(22, 20, 16, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(22, 20, 16, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Reveal-on-mount fade, for landing-page hero content only -- functional
+   screens (forms/dashboards/interview flow) stay animation-free. */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.reveal {
+  animation: reveal-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.reveal-delay-1 {
+  animation-delay: 90ms;
+}
+.reveal-delay-2 {
+  animation-delay: 180ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "fastapi-expert": {
+      "source": "jeffallan/claude-skills",
+      "sourceType": "github",
+      "skillPath": "skills/fastapi-expert/SKILL.md",
+      "computedHash": "01b185dd062c1d9fd3d0f9e18151a46c84797505bcd4093af77ff4b0179d7bb4"
+    }
+  }
+}
